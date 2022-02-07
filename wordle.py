@@ -104,5 +104,11 @@ if __name__ == "__main__":
         if sys.argv[1] == "--debug":  # Yeah I know about argparse
             main(debug=True)
             sys.exit(1)
+    print("As I prompt you with words, reply back with the following response")
+    print("b = black")
+    print("g = green")
+    print("y = yellow")
+    print('For example if the word is "bring"  and the guess is "orate"')
+    print('Reply with "bgbbb"')
     main()
     sys.exit(0)
