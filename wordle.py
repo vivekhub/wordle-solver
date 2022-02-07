@@ -85,7 +85,7 @@ def process_resp(word, resp, solution):
 
 def achoice(solution=None):
     attempt = 1
-    tryword = "orate"
+    tryword = "raise"
     while attempt < 7:
         resp = input(f"Try the word {tryword} ==>")
         resp = resp.lower()
@@ -106,7 +106,7 @@ def achoice(solution=None):
 
 def main(debug=False):
     load_dictionary()
-    print(f"We have {len(WORDS)} dictionary")
+    print(f"We have {len(WORDS)} dictionary words")
     if debug:
         solution = input("enter the solution:")
         achoice(solution)
