@@ -50,6 +50,17 @@ def process_resp(word, resp, solution):
     letters_match = []
     wrong_letter = []
     global WORDS
+
+    if resp == "ggggg":
+        # We solved it
+        WORDS = [
+            word,
+        ]
+        return True
+
+    # Remove this word
+    WORDS = list(filter(lambda x: word != x, WORDS))
+
     for i, letter in enumerate(resp):
         if letter == "g":
             prune_position_match(word[i], i)
@@ -69,6 +80,8 @@ def process_resp(word, resp, solution):
     if solution and solution not in WORDS:
         print(f"BUG!, pruning of deleted words {wrong_letter}")
 
+    return len(WORDS) == 1
+
 
 def achoice(solution=None):
     attempt = 1
@@ -76,10 +89,12 @@ def achoice(solution=None):
     while attempt < 7:
         resp = input(f"Try the word {tryword} ==>")
         resp = resp.lower()
-        process_resp(tryword, resp, solution)
-        if len(WORDS) == 1:
+
+        found = process_resp(tryword, resp, solution)
+        if found:
             print(f"The word is : {WORDS[0]}")
             return
+
         if len(WORDS) < 20:
             print(f"The word is one of : {WORDS}")
         else:
