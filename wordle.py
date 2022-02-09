@@ -72,6 +72,7 @@ def process_resp(word, resp, solution):
         else:
             wrong_letter.append(word[i])
 
+    print(f"matching letters are {letters_match}")
     prune_letters(letters_match)
     if solution and solution not in WORDS:
         print(f"BUG!, pruning of {letters_match}")

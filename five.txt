@@ -4798,7 +4798,6 @@ herls
 herma
 herms
 herns
-heroe
 heron
 heros
 herry
