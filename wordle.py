@@ -27,6 +27,15 @@ def prune_position_match(letter, position):
     WORDS = list(filter(lambda w: w[position] == letter, WORDS))
 
 
+def prune_letter(letter, pos):
+    global WORDS
+    new_words = (filter(lambda x: letter in x, WORDS))
+
+    if new_words:
+        new_words = list(filter(lambda w: w[pos] != letter, new_words))
+        init_words(new_words)
+
+
 def prune_letters(letters):
     global WORDS
     new_words = set(WORDS)
@@ -69,13 +78,12 @@ def process_resp(word, resp, solution):
 
         elif letter == "y":
             letters_match.append(word[i])
+            prune_letter(word[i], i)
+            if solution and solution not in WORDS:
+                print(f"BUG!, pruning by character {word[i]} in wrong position:{i}")
         else:
             wrong_letter.append(word[i])
 
-    print(f"matching letters are {letters_match}")
-    prune_letters(letters_match)
-    if solution and solution not in WORDS:
-        print(f"BUG!, pruning of {letters_match}")
 
     prune_notexist(wrong_letter)
     if solution and solution not in WORDS:
