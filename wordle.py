@@ -13,7 +13,7 @@ def init_words(words=None):
 def load_dictionary():
     global WORDS
     init_words()
-    with open("five.txt", "r") as f:
+    with open("wordle.txt", "r") as f:
         item = 1
         w = f.readline().strip()
         while w:
@@ -56,7 +56,6 @@ def prune_notexist(letters):
 
 
 def process_resp(word, resp, solution):
-    letters_match = []
     wrong_letter = []
     global WORDS
 
@@ -77,13 +76,11 @@ def process_resp(word, resp, solution):
                 print(f"BUG!, pruning of {word[i]} in position{i}")
 
         elif letter == "y":
-            letters_match.append(word[i])
             prune_letter(word[i], i)
             if solution and solution not in WORDS:
                 print(f"BUG!, pruning by character {word[i]} in wrong position:{i}")
         else:
             wrong_letter.append(word[i])
-
 
     prune_notexist(wrong_letter)
     if solution and solution not in WORDS:
